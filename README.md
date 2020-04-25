@@ -1,5 +1,5 @@
 # CVwebsite
-Code base to create simple website(s) for Developer, with CV section and QA section. 
+Code base to create simple website(s) for Developer, with CV section and QA section. <br>
 We use Django, Bootstrap and Heroku to create the website
 
 # Install package
