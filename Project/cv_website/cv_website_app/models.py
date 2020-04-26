@@ -60,6 +60,7 @@ class Question(models.Model):
     questioner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(blank=False, max_length=MIN_CHAR_FIELD_LENGTH)
     content = models.CharField(blank=False, max_length=MAX_CHAR_FIELD_LENGTH)
+    question_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "{} by {}".format(self.question, self.questioner.username)
@@ -68,6 +69,7 @@ class Question(models.Model):
 class Answer(models.Model):
     answer = models.CharField(blank=False, max_length=MIN_CHAR_FIELD_LENGTH)
     related_question = models.ForeignKey(Question, on_delete=models.CASCADE)
-
+    answer_date = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return "{}".format(self.answer)
