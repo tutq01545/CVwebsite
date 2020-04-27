@@ -28,3 +28,9 @@ def home(request):
         else:
             return HttpResponseNotFound(PAGE_NOT_FOUND)
 
+
+def contact(request):
+    template_file = "contact.html"
+    context = {}
+
+    return render(request, template_name=template_file, context=context)

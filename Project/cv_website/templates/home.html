@@ -3,15 +3,16 @@
 {% block body %}
     <div id="part-summary">
         <div id="part-summary-title">
-            <span>Summary</span>
+            <h2>Summary</h2>
         </div>
         <div id="part-summary-content">
-            {{ summary }}
+            Hi, my name is {{developer.first_name}} {{developer.last_name}}.<br>
+            {{ summary | linebreaks }}
         </div>
     </div>
     <div id="part-work-experience">
         <div id="part-work-experience-title">
-            <span>Work Experience</span>
+            <h2>Work Experience</h2>
         </div>
         <div id="part-work-experience-content">
             {% for wor in work_experience %}
@@ -27,7 +28,7 @@
     </div>
     <div id="part-education">
         <div id="part-education-title">
-            <span>Education</span>
+            <h2>Education</h2>
         </div>
         <div id="part-education-content">
             {% for edu in education %}
@@ -44,7 +45,7 @@
     </div>
     <div id="part-skill">
         <div id="part-skill-title">
-            <span>Skill</span>
+            <h2>Skill</h2>
         </div>
         <div id="part-skill-content">
             {% for ski in skill %}

@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from cv_website_app.views import home, home_redirect
+from cv_website_app.views import home, home_redirect, contact
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', home_redirect, name='home_redirect'),
     re_path(r'^home$', home, name='home'),
+    re_path(r'^contact', contact, name='contact'),
 ]

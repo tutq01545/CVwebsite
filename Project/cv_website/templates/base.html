@@ -6,7 +6,10 @@
     <title>My Website</title>
 </head>
 <body>
-    <div style="pa0 :16px;margin-left: 20px;margin-right:20px">
+    <div id="header">
+        {% include 'header.html' %}
+    </div>
+    <div id="content" style="pa0 :16px;margin-left: 20px;margin-right:20px">
         {% block body %} {% endblock %}
     </div>
 </body>
