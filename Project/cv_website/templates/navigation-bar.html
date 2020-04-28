@@ -1,0 +1,56 @@
+<style>
+    .brand-image-small {
+        max-height:180px
+    }
+
+    .nav-main {
+        margin-top: 10px
+
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    });
+</script>
+
+<div class="vertical-nav bg-white" id="sidebar">
+    <div class="media d-flex align-items-center">
+        <img src="{{ MEDIA_PREFIX }}photo/tu.jpg" alt="..." class="mr-3 rounded-circle img-thumbnail shadow-sm brand-image-small">
+        <div class="media-body">
+            <h4 class="m-0">Tu Quang Tran</h4>
+            <p class="font-weight-light text-muted mb-0">Python Developer</p>
+        </div>
+    </div>
+    <div class="nav flex-column bg-white mb-0 nav-main">
+        <div class="nav-item">
+            {% if request.path == '/home' %}
+            <a href={% url 'home' %} class="nav-link text-dark font-italic bg-light">
+            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            Home
+            </a>
+            {% else %}
+            <a href={% url 'home' %} class="nav-link text-dark font-italic">
+            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            Home
+            </a>
+            {% endif %}
+        </div>
+        <div class="nav-item">
+            {% if request.path == '/contact' %}
+            <a href={% url 'contact' %} class="nav-link text-dark font-italic bg-light">
+            <i class="fa fa-question mr-3 text-primary fa-fw"></i>
+            Q&A
+            </a>
+            {% else %}
+            <a href={% url 'contact' %} class="nav-link text-dark font-italic">
+            <i class="fa fa-question mr-3 text-primary fa-fw"></i>
+            Q&A
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

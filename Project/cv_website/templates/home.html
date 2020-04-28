@@ -1,61 +1,63 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <div id="part-summary">
-        <div id="part-summary-title">
-            <h2>Summary</h2>
+    <div data-spy="scroll" data-target="#header" data-offset="0" class="scrollspy-example">
+        <div id="part-summary">
+            <div id="part-summary-title">
+                <h2 class="display-4 text-black">Summary</h2>
+            </div>
+            <div id="part-summary-content">
+                Hi, my name is {{developer.first_name}} {{developer.last_name}}.<br>
+                {{ summary | linebreaks }}
+            </div>
         </div>
-        <div id="part-summary-content">
-            Hi, my name is {{developer.first_name}} {{developer.last_name}}.<br>
-            {{ summary | linebreaks }}
+        <div id="part-work-experience">
+            <div id="part-work-experience-title">
+                <h2 class="display-4 text-black">Work Experience</h2>
+            </div>
+            <div id="part-work-experience-content">
+                {% for wor in work_experience %}
+                    <div id="work-experience-{{wor.id}}">
+                        <div> Job title: {{wor.job_title}}</div>
+                        <div> Employer: {{wor.employer}}</div>
+                        <div> Start date: {{wor.start_date}}</div>
+                        <div> End date: {{wor.end_date}}</div>
+                        <div> Description: {{wor.description | linebreaks}}</div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div id="part-work-experience">
-        <div id="part-work-experience-title">
-            <h2>Work Experience</h2>
+        <div id="part-education">
+            <div id="part-education-title">
+                <h2 class="display-4 text-black">Education</h2>
+            </div>
+            <div id="part-education-content">
+                {% for edu in education %}
+                    <div id="education-{{edu.id}}">
+                        <div> University: {{edu.university}}</div>
+                        <div> Field of study: {{edu.field_of_study}}</div>
+                        <div> Degree: {{edu.degree}}</div>
+                        <div> Start date: {{edu.start_date}}</div>
+                        <div> End date: {{edu.end_date}}</div>
+                        <div> Description: {{edu.description | linebreaks}}</div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div id="part-work-experience-content">
-            {% for wor in work_experience %}
-                <div id="work-experience-{{wor.id}}">
-                    <div> Job title: {{wor.job_title}}</div>
-                    <div> Employer: {{wor.employer}}</div>
-                    <div> Start date: {{wor.start_date}}</div>
-                    <div> End date: {{wor.end_date}}</div>
-                    <div> Description: {{wor.description | linebreaks}}</div>
-                </div>
-            {% endfor %}
+        <div id="part-skill">
+            <div id="part-skill-title">
+                <h2 class="display-4 text-black">Skill</h2>
+            </div>
+            <div id="part-skill-content">
+                {% for ski in skill %}
+                    <div id="skill-{{ski.id}}">
+                        <div> {{ski.skill}} : Level {{ski.leverage}}</div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div id="part-education">
-        <div id="part-education-title">
-            <h2>Education</h2>
-        </div>
-        <div id="part-education-content">
-            {% for edu in education %}
-                <div id="education-{{edu.id}}">
-                    <div> University: {{edu.university}}</div>
-                    <div> Field of study: {{edu.field_of_study}}</div>
-                    <div> Degree: {{edu.degree}}</div>
-                    <div> Start date: {{edu.start_date}}</div>
-                    <div> End date: {{edu.end_date}}</div>
-                    <div> Description: {{edu.description | linebreaks}}</div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div id="part-skill">
-        <div id="part-skill-title">
-            <h2>Skill</h2>
-        </div>
-        <div id="part-skill-content">
-            {% for ski in skill %}
-                <div id="skill-{{ski.id}}">
-                    <div> {{ski.skill}} : Level {{ski.leverage}}</div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div id="hobby">
+        <div id="hobby">
 
+        </div>
     </div>
 {% endblock %}

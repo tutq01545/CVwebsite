@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +10,30 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/a9c1abaecc.js" crossorigin="anonymous"></script>
+
+    <style>
+        .body-content {
+            margin-left: 10px
+        }
+    </style>
+
 </head>
 <body>
-<div id="header" class="container-sm">
-    {% include 'header.html' %}
+
+{% include "header.html" %}
+
+<div id="body">
+    <div class="row body-content">
+        {% include "navigation-bar.html" %}
+        <div class="col-9 page-content p-5" id="content">
+            <div>
+                {% block body %} {% endblock %}
+            </div>
+        </div>
+    </div>
 </div>
-<div id="content" class="container-md">
-    {% block body %} {% endblock %}
-</div>
+
+
 </body>
 </html>

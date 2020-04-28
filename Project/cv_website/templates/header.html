@@ -1,15 +1,33 @@
-<nav class="navbar navbar-expand-sm bg-white">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
+<style>
+    .header-top {
+        margin-top: 50px
+    }
+</style>
+
+<div class="header-top">
+    <nav id="header" class="navbar navbar-expand-sm bg-white fixed-top justify-content-center" style="margin-bottom:100px">
+        <ul class="nav nav-pills">
             <li class="nav-item">
-              <a class="nav-link" href={% url 'home' %}>Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#part-summary">Summary</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'contact' %}>Contact</a>
+                <a class="nav-link" href="#part-work-experience">Work experience</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#part-education">Education</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#part-skill">Skill</a>
+            </li>
+            <!--li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#one">one</a>
+                <a class="dropdown-item" href="#two">two</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#three">three</a>
+              </div>
+            </li-->
         </ul>
-    </div>
-</nav>
+    </nav>
+</div>
