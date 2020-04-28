@@ -1,0 +1,63 @@
+developer:
+  first_name: Tu Quang
+  last_name: Tran
+  job: Python Entwickler
+education:
+- degree: Msc
+  description: '- Lecture A B C D E
+
+    - Praktische Kurse AB BC CD EF
+
+    - Auszeichnung A1 A2 A3
+
+    - Masterarbeit 1'
+  end_date: 2015-07-15
+  field_of_study: Computer Science
+  id: 1
+  start_date: 2013-04-15
+  university: Massachusetts Institute of Technology
+- degree: Bsc
+  description: '- Vortrag AAA BBB CCC DDD EEE
+
+    - Praktische Kurse AB BC CD EF
+
+    - Auszeichnung A1 A2 A3
+
+    - Bachelorarbeit 1'
+  end_date: 2013-04-15
+  field_of_study: Computer Science
+  id: 2
+  start_date: 2010-04-15
+  university: Massachusetts Institute of Technology
+hobby: Buch zu lesen, Reisen, Computer-Spiele und Handy-Spiele spielen
+skill:
+- id: 1
+  leverage: 5
+  skill: Python
+- id: 2
+  leverage: 4
+  skill: Java
+summary: 'Ein leidenschaftlicher Python-Entwickler, der alles hat, was zu tun ist.
+
+  Ich mache nur Spass!'
+work_experience:
+- description: '- Ich entwarf und entwickelte eine Software AAA
+
+    - Ich behielt eine Software BBB
+
+    - Ich entwarf ein System CCC'
+  employer: Unternehmen A
+  end_date: 2018-12-30
+  id: 1
+  job_title: Entwickler
+  start_date: 2017-10-27
+- description: '- Ich entwarf und entwickelte eine Software entwickelt DDD
+
+    - Ich unterhielt eine Software EEE
+
+    - Ich entwarf ein System FFF'
+  employer: Company B
+  end_date: 2020-12-12
+  id: 2
+  job_title: Senior Developer
+  start_date: 2019-1-1

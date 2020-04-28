@@ -1,7 +1,6 @@
+{% load i18n %}
+
 <style>
-  #change-language > a:hover {
-      background-color: #343a40;
-  }
 
   .active-language {
       background-color: #009999;
@@ -11,11 +10,24 @@
       margin-left:12px
   }
 
+  .dropdown-language-item {
+      color: white;
+      border: None;
+      background: None;
+      padding:0;
+      width: 100%
+  }
+
+  .dropdown-item:hover {
+    background-color: #343a40;
+  }
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark">
   <a id="brand-top" class="navbar-brand text-white" href={% url 'home' %}>My Website</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+          aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -23,24 +35,45 @@
     <ul class="navbar-nav mr-auto">
       {% if request.path == '/home' %}
       <li class="nav-item active">
-        <a class="nav-link text-white" href="#part-summary-title">Summary <span class="sr-only">(current)</span></a>
+        <a class="nav-link text-white" href="#part-summary-title">{% trans "Summary" %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#part-work-experience-title">Work Experience</a>
+        <a class="nav-link text-white" href="#part-work-experience-title">{% trans "Work Experience" %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#part-education-title">Education</a>
+        <a class="nav-link text-white" href="#part-education-title">{% trans "Education" %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#part-skill-title">Skill</a>
+        <a class="nav-link text-white" href="#part-skill-title">{% trans "Skill" %}</a>
       </li>
       {% endif %}
     </ul>
     <div class="nav-item dropdown ml-auto">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown link </a>
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">{% trans "Language" %}</a>
         <div id="change-language" class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item text-white active-language" href="#">English</a>
-            <a class="dropdown-item text-white" href="#">German</a>
+          <form action="#" method="get">
+            {% if language == "en" %}
+              <a class="dropdown-item active-language">
+                <input class="dropdown-language-item" type="submit" name="language" value="English"/>
+              </a>
+            {% else %}
+              <a class="dropdown-item" >
+                <input class="dropdown-language-item" type="submit" name="language" value="English"/>
+              </a>
+            {% endif %}
+          </form>
+          <form action="#" method="get">
+            {% if language == "de" %}
+              <a class="dropdown-item active-language">
+                <input class="dropdown-language-item" type="submit" name="language" value="German"/>
+              </a>
+            {% else %}
+              <a class="dropdown-item">
+                <input class="dropdown-language-item" type="submit" name="language" value="German"/>
+              </a>
+            {% endif %}
+          </form>
         </div>
     </div>
   </div>
