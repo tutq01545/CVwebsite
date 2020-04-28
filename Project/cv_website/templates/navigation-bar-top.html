@@ -1,0 +1,47 @@
+<style>
+  #change-language > a:hover {
+      background-color: #343a40;
+  }
+
+  .active-language {
+      background-color: #009999;
+  }
+
+  #brand-top {
+      margin-left:12px
+  }
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark">
+  <a id="brand-top" class="navbar-brand text-white" href={% url 'home' %}>My Website</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if request.path == '/home' %}
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="#part-summary-title">Summary <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#part-work-experience-title">Work Experience</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#part-education-title">Education</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#part-skill-title">Skill</a>
+      </li>
+      {% endif %}
+    </ul>
+    <div class="nav-item dropdown ml-auto">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown link </a>
+        <div id="change-language" class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item text-white active-language" href="#">English</a>
+            <a class="dropdown-item text-white" href="#">German</a>
+        </div>
+    </div>
+  </div>
+</nav>

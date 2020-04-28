@@ -1,0 +1,82 @@
+<style>
+    .brand-image-small {
+        max-height:130px
+    }
+
+    .nav-main {
+        margin-top: 10px
+
+    }
+
+    .sidenav {
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        margin-top:6px;
+        overflow-x: hidden;
+    }
+
+    .brand-to-top {
+        margin-top: 20px;
+    }
+
+    .icon-green {
+        color: #009999;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    });
+</script>
+
+<div class="vertical-nav bg-dark sidenav" id="sidebar">
+    <div class="media d-flex align-items-center brand-to-top">
+        <img src="{{ MEDIA_PREFIX }}photo/tu.jpg" alt="..." class="mr-3 rounded-circle img-thumbnail shadow-sm brand-image-small">
+        <div class="media-body">
+            <h4 class="m-0 text-white">Tu Quang Tran</h4>
+            <p class="font-weight-light text-white font-italic mb-0">Python Developer</p>
+        </div>
+    </div>
+    <div class="nav flex-column bg-dark mb-0 nav-main">
+        <div class="nav-item">
+            {% if request.path == '/home' %}
+            <a href={% url 'home' %} class="nav-link text-white bg-secondary">
+            <span class="icon-green">
+                <i class="fa fa-th-large mr-3 fa-fw"></i>
+            </span>
+            Home
+            </a>
+            {% else %}
+            <a href={% url 'home' %} class="nav-link text-white">
+            <span class="icon-green">
+                <i class="fa fa-th-large mr-3 fa-fw"></i>
+            </span>
+            Home
+            </a>
+            {% endif %}
+        </div>
+        <div class="nav-item">
+            {% if request.path == '/contact' %}
+            <a href={% url 'contact' %} class="nav-link text-white bg-secondary">
+            <span class="icon-green">
+                <i class="fa fa-question mr-3 fa-fw"></i>
+            </span>
+            Q&A
+            </a>
+            {% else %}
+            <a href={% url 'contact' %} class="nav-link text-white">
+            <span class="icon-green">
+                <i class="fa fa-question mr-3 fa-fw"></i>
+            </span>
+            Q&A
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

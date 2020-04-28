@@ -14,18 +14,24 @@
 
     <style>
         .body-content {
-            margin-left: 10px
+            margin-left: 330px;
+            display: block;
+        }
+
+        .header-top {
+            margin-top: 50px
         }
     </style>
 
 </head>
 <body>
 
-{% include "header.html" %}
-
+<div class="header-top">
+    {% include "navigation-bar-top.html" %}
+</div>
 <div id="body">
     <div class="row body-content">
-        {% include "navigation-bar.html" %}
+        {% include "navigation-bar-left.html" %}
         <div class="col-9 page-content p-5" id="content">
             <div>
                 {% block body %} {% endblock %}
