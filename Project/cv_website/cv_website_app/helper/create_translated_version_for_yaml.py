@@ -38,7 +38,6 @@ def translate_yaml(language_code:str):
             if isinstance(document, str):
                 data[item] = translate(language_code, document)
 
-
     yaml_new_file = os.path.join(yaml_folder, 'cv-{}.yaml'.format(language_code))
     with open(yaml_new_file, 'w') as file:
         yaml.dump(data, file)

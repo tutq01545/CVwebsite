@@ -33,7 +33,11 @@ def home(request):
         data = read_yaml_from_file(file_with_path)
         if data:
             for item, document in data.items():
-                context.update({item: document})
+                if item == "work_experience" or item == "education":
+                    temp_document = sorted(document, key= lambda i: i["id"], reverse=True)
+                    context.update({item: temp_document})
+                else:
+                    context.update({item: document})
             return render(request, template_name=template_file, context=context)
         else:
             return HttpResponseNotFound(PAGE_NOT_FOUND)

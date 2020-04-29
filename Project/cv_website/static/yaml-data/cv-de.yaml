@@ -2,6 +2,7 @@ developer:
   first_name: Tu Quang
   last_name: Tran
   job: Python Entwickler
+  photo: tu-quang-tran.jpg
 education:
 - degree: Msc
   description: '- Lecture A B C D E
@@ -32,11 +33,17 @@ education:
 hobby: Buch zu lesen, Reisen, Computer-Spiele und Handy-Spiele spielen
 skill:
 - id: 1
-  leverage: 5
+  leverage: 100
   skill: Python
 - id: 2
-  leverage: 4
+  leverage: 80
   skill: Java
+- id: 3
+  leverage: 70
+  skill: HTML / HTML5
+- id: 4
+  leverage: 75
+  skill: Business Process Automation
 summary: 'Ein leidenschaftlicher Python-Entwickler, der alles hat, was zu tun ist.
 
   Ich mache nur Spass!'
@@ -51,7 +58,7 @@ work_experience:
   id: 1
   job_title: Entwickler
   start_date: 2017-10-27
-- description: '- Ich entwarf und entwickelte eine Software entwickelt DDD
+- description: '- Ich entwarf und entwickelte eine Software entwickelt DDD. Genutze Technologie ist Django, Bootstrap, Jquery, Git and Heroku.
 
     - Ich unterhielt eine Software EEE
 
@@ -60,4 +67,4 @@ work_experience:
   end_date: 2020-12-12
   id: 2
   job_title: Senior Developer
-  start_date: 2019-1-1
+  start_date: 2019-01-01

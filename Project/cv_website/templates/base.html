@@ -14,19 +14,19 @@
 
     <style>
         .body-content {
-            margin-left: 330px;
-            display: block;
+            margin-left: calc(21em);
+            position:absolute;
         }
+        html {
+            font-size: calc(0.55em + 0.4vw);
+         }
 
-        .header-top {
-            margin-top: 50px
-        }
     </style>
 
 </head>
 <body>
 
-<div class="header-top">
+<div>
     {% include "navigation-bar-top.html" %}
 </div>
 <div id="body">

@@ -3,63 +3,92 @@
 {% load i18n %}
 
 {% block body %}
-    <div data-spy="scroll" data-target="#header" data-offset="0" class="scrollspy-example">
-        <div id="part-summary">
-            <div id="part-summary-title">
-                <h2 class="display-4 text-black">{% trans "Summary" %}</h2>
-            </div>
-            <div id="part-summary-content">
-                {% trans "Hi, my name is" %} {{developer.first_name}} {{developer.last_name}}.<br>
-                {{ summary | linebreaks }}
-            </div>
-        </div>
-        <div id="part-work-experience">
-            <div id="part-work-experience-title">
-                <h2 class="display-4 text-black">{% trans "Work Experience" %}</h2>
-            </div>
-            <div id="part-work-experience-content">
-                {% for wor in work_experience %}
-                    <div id="work-experience-{{wor.id}}">
-                        <div> {% trans "Job title:" %} {{wor.job_title}}</div>
-                        <div> {% trans "Employer:" %} {{wor.employer}}</div>
-                        <div> {% trans "Start date:" %} {{wor.start_date}}</div>
-                        <div> {% trans "End date:" %} {{wor.end_date}}</div>
-                        <div> {% trans "Description:" %} {{wor.description | linebreaks}}</div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="part-education">
-            <div id="part-education-title">
-                <h2 class="display-4 text-black">{% trans "Education" %}</h2>
-            </div>
-            <div id="part-education-content">
-                {% for edu in education %}
-                    <div id="education-{{edu.id}}">
-                        <div> {% trans "University:" %} {{edu.university}}</div>
-                        <div> {% trans "Field of study:" %} {{edu.field_of_study}}</div>
-                        <div> {% trans "Degree:" %} {{edu.degree}}</div>
-                        <div> {% trans "Start date:" %} {{edu.start_date}}</div>
-                        <div> {% trans "End date:" %} {{edu.end_date}}</div>
-                        <div> {% trans "Description:" %} {{edu.description | linebreaks}}</div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="part-skill">
-            <div id="part-skill-title">
-                <h2 class="display-4 text-black">{% trans "Skill" %}</h2>
-            </div>
-            <div id="part-skill-content">
-                {% for ski in skill %}
-                    <div id="skill-{{ski.id}}">
-                        <div> {{ski.skill}} : {% trans "Level" %} {{ski.leverage}}</div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="hobby">
 
+<style>
+    .progress {
+        position: relative;
+        height: 25px;
+        margin: 10px 0 10px 0;
+    }
+    .progress > .progress-type {
+        position: absolute;
+        left: 0px;
+        font-weight: 800;
+        padding: 3px 30px 2px 10px;
+        color: rgb(255, 255, 255);
+        background-color: rgba(25, 25, 25, 0.2);
+    }
+    .progress > .progress-completed {
+        position: absolute;
+        right: 0px;
+        font-weight: 800;
+        padding: 3px 10px 2px;
+    }
+
+    .bg-green {
+        background-color: #009999;
+    }
+</style>
+
+<div data-spy="scroll" data-target="#header" data-offset="0" class="scrollspy-body" style="margin-top: 40px;">
+    <div id="part-summary">
+        <div id="part-summary-title">
+            <h2 class="display-5 text-black">{% trans "Summary" %}</h2>
+        </div>
+        <div id="part-summary-content">
+            <!--span>{% trans "Hi, my name is" %} {{developer.first_name}} {{developer.last_name}}.</span><br-->
+            <p class="text-break">{{ summary | linebreaks }} </p>
         </div>
     </div>
+    <div id="part-work-experience">
+        <div id="part-work-experience-title">
+            <h2 class="display-5 text-black">{% trans "Work Experience" %}</h2>
+        </div>
+        <div id="part-work-experience-content">
+            {% for wor in work_experience %}
+                <div id="work-experience-{{wor.id}}">
+                    <p class="text-break font-weight-dark text-dark mb-0">{{wor.job_title}}, {{wor.employer}}</p>
+                    <p class="text-break font-weight-light text-dark font-italic mb-2">{{wor.start_date}} - {{wor.end_date}}</p>
+                    <p class="text-break"> {{wor.description | linebreaks}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="part-education">
+        <div id="part-education-title">
+            <h2 class="display-5 text-black">{% trans "Education" %}</h2>
+        </div>
+        <div id="part-education-content">
+            {% for edu in education %}
+                <div id="education-{{edu.id}}">
+                    <p class="text-break font-weight-dark text-dark mb-0">{{edu.degree}} {{edu.field_of_study}}, {{edu.university}}</p>
+                    <p class="text-break font-weight-light text-dark font-italic mb-2">{{edu.start_date}} - {{edu.end_date}}</p>
+                    <p class="text-break">{{edu.description | linebreaks}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="part-skill">
+        <div id="part-skill-title">
+            <h2 class="display-5 text-black">{% trans "Skill" %}</h2>
+        </div>
+        <div id="part-skill-content">
+            {% for ski in skill %}
+                <div id="skill-{{ski.id}}">
+                    <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                             aria-valuemax="100" style="width: {{ski.leverage}}%;">
+                            <span class="sr-only">{{ski.leverage}}% Complete</span>
+                        </div>
+                        <span class="progress-type">{{ski.skill}}</span>
+                        <span class="progress-completed">{{ ski.leverage}}%</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="hobby">
+
+    </div>
+</div>
 {% endblock %}

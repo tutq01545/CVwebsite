@@ -2,6 +2,7 @@ developer:
   first_name: Tu Quang
   last_name: Tran
   job: Python Developer
+  photo: tu-quang-tran.jpg
 education:
 - degree: Msc
   description: '- Lecture A B C D E
@@ -31,11 +32,17 @@ education:
   university: Massachusetts Institute of Technology
 skill:
 - id: 1
-  leverage: 5
+  leverage: 100
   skill: Python
 - id: 2
-  leverage: 4
+  leverage: 80
   skill: Java
+- id: 3
+  leverage: 70
+  skill: HTML / HTML5
+- id: 4
+  leverage: 75
+  skill: Business Process Automation
 summary: 'A passionate Python developers who has everything, what to do.
 
   I''m just having fun!'
@@ -50,7 +57,7 @@ work_experience:
   id: 1
   job_title: Developer
   start_date: 2017-10-27
-- description: '- I designed and developed a software DDD
+- description: '- I designed and developed a software DDD. Used technology is Django, Bootstrap, Jquery, Git and Heroku.
 
      - I maintained a software EEE
 
@@ -59,5 +66,5 @@ work_experience:
   end_date: 2020-12-12
   id: 2
   job_title: Senior Developer
-  start_date: 2019-1-1
+  start_date: 2019-01-01
 hobby: 'reading book, traveling, playing computer games and mobile games'
