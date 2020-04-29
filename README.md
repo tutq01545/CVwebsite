@@ -7,7 +7,7 @@ pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org <packa
 
 # Setup for Multiple language development
 ## 1. Install gettext 
-- Download and install gettext-tools and gettext-runtime (version 0.17.1, version 0.18 has bug)
+- Download and install gettext-tools and gettext-runtime (version 0.17.1 windows-34 bit, version 0.18 has bug)
   Both of them should be saved under C:\<Your Path>\gettext-utils
 - Set C:\<Your Path>\gettext-utils\bin to Path in environment variable (Windows)
 - Link of documentation: https://www.gnu.org/software/gettext/manual/gettext.html
