@@ -1,0 +1,24 @@
+    <head>
+        <style>
+            .question {
+                width: 25vw;
+                resize: none;
+                vertical-align: top;
+                margin-top: 0.5vw;
+                margin-bottom: 0.5vw;
+                height: 15vh;
+            }
+        </style>
+    </head>
+    <div class="ask-question">
+        <h3>Ask question</h3>
+        <form method="post" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <span>Please enter your question:</span>
+            <br>
+            <textarea id="question" name="new-question" class="question"></textarea>
+            <br>
+            <input type="hidden" name="questioner-email" value= "{{ questioner_email_address }}">
+            <button type="submit" id="post-question">Ask question</button>                
+        </form>
+    </div>

@@ -57,13 +57,12 @@ class Link(models.Model):
 
 
 class Question(models.Model):
-    questioner = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(blank=False, max_length=MIN_CHAR_FIELD_LENGTH)
+    questioner_email = models.EmailField()
     content = models.CharField(blank=False, max_length=MAX_CHAR_FIELD_LENGTH)
     question_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{} by {}".format(self.question, self.questioner.username)
+        return "{} by {}".format(self.content, self.questioner_email)
 
 
 class Answer(models.Model):

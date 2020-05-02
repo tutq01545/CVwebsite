@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<head>
+    <style>
+        .email {
+            width: 20vw;            
+            margin-right: 0.5vw;
+            margin-left: 0.5vw;
+        }
+        
+        h3 {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        function showHiddenSection() {
+            var askQuesttionSection = $('#ask-qeustion');
+            var questionAndAnswerSection = $('#question-and-answer');
+            askQuesttionSection.show();
+            questionAndAnswerSection.show();
+        }
+        function validateEmail(email) {
+            var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (email == "") {
+                return "Email address input is empty!";
+            }
+            else if (email.match(mailFormat)) {       
+            
+                return "";
+            }                
+                return "You have entered an invalid email address!";    
+            
+        }
+        function validateQuestion(question) {
+            if (question == "") {
+                return "Question input is empty!";
+            }
+            return "";
+        }
+
+        function postQuestionOnClick() {
+            $('#post-question').click(function() {
+                var question = $('#question').val();
+                message = validateQuestion(question);
+                if (message != "") {
+                    alert(message);
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        function submitEmailOnClick() {
+            $('#submit-email').click(function() {
+                var email = $('#email').val();
+                message = validateEmail(email);
+                if (message != "") {
+                    alert(message);
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        $(document).ready(function() {
+            postQuestionOnClick();
+            submitEmailOnClick();            
+        });
+    </script>
+</head>
+
+<body>
+<h1>Q&A Section</h1>
+<h3>Input email address</h3>
+<div id="submit-email-address">
+    <form method="get" enctype="multipart/form-data" autocomplete="off">
+        <span>Please enter your email address:</span>
+        <input type="text" id="email" name="questioner-email" class="email" value="{{ questioner_email_address }}">
+        <button type="submit" id="submit-email">Submit</button>                
+    </form>
+</div>
+<br>
+
+{% if not init %}
+<div class="row">
+    <div id="ask-question" class="col-sm-6">
+        {% include 'qanda-ask-question.html' %}
+    </div>
+    <br>
+
+    <div id="question-and-answer" class="col-sm-6">
+        {% include 'qanda-question-and-answer.html' %}
+    </div>
+</div>
+
+{% endif %}
+</body>
+{% endblock %}

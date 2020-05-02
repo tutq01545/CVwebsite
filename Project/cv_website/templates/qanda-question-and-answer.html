@@ -1,0 +1,61 @@
+<head>
+    <style>
+        .break-word {
+            overflow-wrap: break-word;
+        }
+        .question-and-answer-answer {
+            margin-top: 4vh;
+            margin-bottom: 6vh;
+        }
+        li.active, li.disabled {
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+    <script>
+        
+        $( document ).ready(function() {	
+            var items = $("p");
+            var numItems = items.length;
+            var perPage = 5;
+            items.slice(perPage).hide();
+            if(numItems != 0){
+                $(".pagination").pagination({
+                    items: numItems,
+                    itemsOnPage: perPage,
+                    cssStyle: "light-theme",
+                    onPageClick: function(pageNumber) { 
+                        var showFrom = perPage * (pageNumber - 1);
+                        var showTo = showFrom + perPage;
+                        items.hide().slice(showFrom, showTo).show();
+                    }
+                });
+            }
+        });
+        
+    </script>
+</head>
+{% if question_answer_list %}
+
+<h3>Q&A</h3>
+{% for value_pair in question_answer_list %}
+<div id="question-and-answer">
+    <p class="break-word">
+        <span class="question-and-answer-question"><b>Question:</b> {{ value_pair.question }}</span><br>
+        <span class="question-and-answer-answer"><b>Answer:</b> {{ value_pair.answer }}</span>
+    </p>    
+
+{% endfor %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+    </ul>
+</nav>
+</div>
+
+{% endif %}
