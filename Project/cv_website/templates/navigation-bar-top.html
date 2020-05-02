@@ -55,22 +55,26 @@
           <form action="#" method="get">
             {% if language == "en" %}
               <a class="dropdown-item active-language">
-                <input class="dropdown-language-item" type="submit" name="language" value="English"/>
+                <input class="dropdown-language-item" type="submit" name="language-display" value="English"/>
+                <input type="hidden" name="language" value="English"/>
               </a>
             {% else %}
               <a class="dropdown-item" >
-                <input class="dropdown-language-item" type="submit" name="language" value="English"/>
+                <input class="dropdown-language-item" type="submit" name="language-display" value="Englisch"/>
+                <input type="hidden" name="language" value="English"/>
               </a>
             {% endif %}
           </form>
           <form action="#" method="get">
             {% if language == "de" %}
               <a class="dropdown-item active-language">
-                <input class="dropdown-language-item" type="submit" name="language" value="German"/>
+                <input class="dropdown-language-item" type="submit" name="language-display" value="Deutsch"/>
+                <input type="hidden" name="language" value="German"/>
               </a>
             {% else %}
               <a class="dropdown-item">
-                <input class="dropdown-language-item" type="submit" name="language" value="German"/>
+                <input class="dropdown-language-item" type="submit" name="language-display" value="German"/>
+                <input type="hidden" name="language" value="German"/>
               </a>
             {% endif %}
           </form>

@@ -13,4 +13,3 @@ def read_yaml_from_file(file_path):
         return data
     else:
         return None
-

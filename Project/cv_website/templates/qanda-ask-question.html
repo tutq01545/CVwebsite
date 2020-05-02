@@ -1,0 +1,31 @@
+{% load i18n %}
+<style>
+    .ask-question {
+        margin-top: 30px;
+    }
+
+    #input-question {
+        margin-top: 40px;
+     }
+
+    #question {
+        width: 34vw;
+        resize: none;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+</style>
+
+<div class="ask-question">
+    <h2 class="display-5 text-black">{% trans "Question" %}</h2>
+    <div id="input-question">
+        <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please enter your question:" %}</span>
+        <form method="post" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <textarea id="question" name="new-question" class="form-control" rows="4" maxlength="255"></textarea>
+            <input type="hidden" name="questioner-email" value= "{{ questioner_email_address }}">
+            <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

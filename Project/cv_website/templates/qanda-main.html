@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block body %}
+
+<style>
+        #email {
+            width: 28vw;
+            margin-top:1em;
+            margin-bottom:1em
+        }
+        
+        h3 {
+            margin-top: 20px;
+        }
+
+        #input-email-address {
+            margin-top: 40px;
+        }
+
+        .submit-myCV-style {
+            color: #009999;
+            border-color: #009999;
+        }
+
+        .submit-myCV-style:hover {
+            color: white;
+            background-color: #009999;
+        }
+
+        .submit-myCV-style:click {
+            color: white;
+            background-color: #009999;
+        }
+
+    </style>
+
+<script>
+        function showHiddenSection() {
+            var askQuesttionSection = $('#ask-question');
+            var questionAndAnswerSection = $('#question-and-answer');
+            askQuesttionSection.show();
+            questionAndAnswerSection.show();
+        }
+        function validateEmail(email) {
+            var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (email == "") {
+                return "Email address input is empty!";
+            }
+            else if (email.match(mailFormat)) {       
+            
+                return "";
+            }                
+                return "You have entered an invalid email address!";    
+            
+        }
+        function validateQuestion(question) {
+            if (question == "") {
+                return "Question input is empty!";
+            }
+            return "";
+        }
+
+        function postQuestionOnClick() {
+            $('#post-question').click(function() {
+                var question = $('#question').val();
+                message = validateQuestion(question);
+                if (message != "") {
+                    alert(message);
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        function submitEmailOnClick() {
+            $('#submit-email').click(function() {
+                var email = $('#email').val();
+                message = validateEmail(email);
+                if (message != "") {
+                    alert(message);
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        $(document).ready(function() {
+            postQuestionOnClick();
+            submitEmailOnClick();            
+        });
+    </script>
+
+<div style="margin-top: 40px;">
+    <h2 class="display-5 text-black">{% trans "Question and Answer" %}</h2>
+    <div id="input-email-address">
+        <form method="get" enctype="multipart/form-data" autocomplete="off">
+            <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please enter your email address:" %}</span>
+            <input class="form-control" type="text" id="email" name="questioner-email" value="{{ questioner_email_address }}">
+            <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
+        </form>
+
+    </div>
+    <br>
+
+    {% if not init %}
+    <div class="row">
+        <div id="ask-question" class="col-sm-6">
+            {% include 'qanda-ask-question.html' %}
+        </div>
+        <br>
+
+        <div id="question-and-answer" class="col-sm-6">
+            {% include 'qanda-question-and-answer.html' %}
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+
+{% endblock %}
