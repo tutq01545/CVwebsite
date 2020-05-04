@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls.static import static
-from cv_website.settings import MEDIA_ROOT, MEDIA_URL
+from cv_website.settings import STATICFILES_DIRS, STATIC_URL
+#from cv_website.settings import MEDIA_ROOT, MEDIA_URL
 
 from cv_website_app.views import home, home_redirect, contact
 
@@ -25,4 +26,5 @@ urlpatterns = [
     re_path(r'^$', home_redirect, name='home_redirect'),
     re_path(r'^home$', home, name='home'),
     re_path(r'^contact', contact, name='contact'),
-] + static(MEDIA_URL, document_root=MEDIA_ROOT)
+] + static(STATIC_URL, document_root=STATICFILES_DIRS[0])
+#+ static(MEDIA_URL, document_root=MEDIA_ROOT)

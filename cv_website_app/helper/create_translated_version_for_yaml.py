@@ -8,8 +8,9 @@ application = get_wsgi_application()
 import yaml
 from cv_website_app.helper.read_yaml import read_yaml_from_file
 from cv_website_app.helper.translator import translate
-from cv_website.settings import STATIC_ROOT
+from cv_website.settings import STATICFILES_DIRS
 
+STATIC_ROOT = STATICFILES_DIRS[0]
 yaml_folder = os.path.join(STATIC_ROOT, 'yaml-data')
 yaml_en_file = os.path.join(yaml_folder, 'cv-en.yaml')
 

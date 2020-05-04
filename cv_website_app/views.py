@@ -1,13 +1,13 @@
 import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound, HttpResponseRedirect
-from cv_website.settings import STATIC_ROOT
+from cv_website.settings import STATICFILES_DIRS
 from cv_website_app.helper.read_yaml import read_yaml_from_file
 from cv_website_app.static.language_code import LANGUAGES
 from django.utils import translation
 from .models import Question, Answer
 
-
+STATIC_ROOT = STATICFILES_DIRS[0]
 PAGE_NOT_FOUND = translation.ugettext("'<h1>Page not found</h1>'")
 DEFAULT_LANGUAGE = "en"
 YAML_FOLDER = "yaml-data"
