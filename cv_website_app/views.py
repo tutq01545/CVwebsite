@@ -65,18 +65,17 @@ def contact(request):
         question_list = Question.objects.filter(questioner_email=questioner_email_address).order_by('-question_date')
         question_answer_list = []
 
-        if question_answer_list:
-            for question in question_list:
-                try:
-                    answer = Answer.objects.get(related_question=question.id).answer
-                    print(answer)
-                    question_answer_pair = {"question": question.content, "answer": answer}
-                except Exception as e:
-                    print("Exception: ", e)
-                    question_answer_pair = {"question": question.content, "answer": ""}
+        for question in question_list:
+            try:
+                answer = Answer.objects.get(related_question=question.id).answer
+                print(answer)
+                question_answer_pair = {"question": question.content, "answer": answer}
+            except Exception as e:
+                print("Exception: ", e)
+                question_answer_pair = {"question": question.content, "answer": ""}
 
-                question_answer_list.append(question_answer_pair)
-
+            question_answer_list.append(question_answer_pair)
+        print(question_answer_list)
         if questioner_email_address:
             init = False
         else:
