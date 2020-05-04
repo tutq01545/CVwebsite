@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import dj_database_url
-import dotenv
+import dj_database_url, dotenv, django_heroku
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -147,3 +146,7 @@ STATICFILES_DIRS = [
 
 #MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+# This should already be in your settings.py
+django_heroku.settings(locals())
+# This is new
+del DATABASES['default']['OPTIONS']['sslmode']
