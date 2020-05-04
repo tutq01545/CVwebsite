@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="927f0887-3d38-4a3c-a8cb-4d244cbde686" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Procfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cv_website/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/cv_website/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../runtime.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/deploy.cmd" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +70,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-15" />
     <option name="width" value="1940" />
     <option name="height" value="1040" />
@@ -139,7 +135,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-12" y="0" width="1552" height="832" extended-state="1" />
+    <frame x="-12" y="0" width="1552" height="832" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24950495" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

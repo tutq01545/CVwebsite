@@ -63,4 +63,9 @@ These files should be located in the project root folder
 - Command: git commit -m "[MESSAGE]"
 - Command: git push heroku master
 ## 8. Open app from Heroku's website
-- Go to app on Heroku and choose Open app 
+- Go to app on Heroku and choose Open app
+## 9. Alternative
+- After step 5 is complete, edit deploy.cmd:
+	+ Replace [HEROKU_APP_NAME] with your desired app name
+	+ Replace [MESSAGE] with content of commit message
+- Run deploy.cmd and follow instructions on the Command prompt
