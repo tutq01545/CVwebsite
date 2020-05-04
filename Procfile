@@ -1,1 +1,1 @@
-web: gunicorn cv_website.wsgi --log-file
+web: gunicorn cv_website.wsgi
