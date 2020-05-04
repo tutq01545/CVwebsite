@@ -1,8 +1,8 @@
 call heroku login -i
 if errorlevel 1 exit /B
-call heroku create [HEROKU_APP_NAME] --buildpack=heroku/python
+call heroku create cv-web-app-tu --buildpack=heroku/python
 if errorlevel 1 exit /B
-call heroku git:remote -a [HEROKU_APP_NAME]
+call heroku git:remote -a cv-web-app-tu
 if errorlevel 1 exit /B
 call git add .
 if errorlevel 1 exit /B
