@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cv_website_app',
-    'cv_website'
+    'cv_website_app'
 ]
 
 MIDDLEWARE = [
