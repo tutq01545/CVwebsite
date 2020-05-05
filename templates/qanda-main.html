@@ -5,8 +5,12 @@
 {% block body %}
 
 <style>
+        #qa-accordion {
+            width: 35vw;
+        }
+
         #email {
-            width: 28vw;
+            width: 25vw;
             margin-top:1em;
             margin-bottom:1em
         }
@@ -17,21 +21,6 @@
 
         #input-email-address {
             margin-top: 40px;
-        }
-
-        .submit-myCV-style {
-            color: #009999;
-            border-color: #009999;
-        }
-
-        .submit-myCV-style:hover {
-            color: white;
-            background-color: #009999;
-        }
-
-        .submit-myCV-style:click {
-            color: white;
-            background-color: #009999;
         }
 
     </style>
@@ -91,33 +80,47 @@
             submitEmailOnClick();            
         });
     </script>
-<div class="row" style="margin-top: 10px;">
-    <div>
-        <div id="input-email-address">
-            <form method="get" enctype="multipart/form-data" autocomplete="off">
-                <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please enter your email address:" %}</span>
-                <input class="form-control" type="text" id="email" name="questioner-email" value="{{ questioner_email_address }}">
-                <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
-                {% if language == "en" %}
-                <input type="hidden" name="language" value="English"/>
-                {% elif language == "de" %}
-                <input type="hidden" name="language" value="German"/>
-                {% endif %}
-            </form>
-
+<div id="qa-accordion" style="margin-top:50px">
+    {% if init %}
+    <div class="card">
+        <div id="collapse-enter-email">
+            <div class="card-body">
+                <form method="get" enctype="multipart/form-data" autocomplete="off">
+                    <span class="text-break font-weight-dark text-dark mb-0">
+                        {% trans "Please enter your email address:" %}</span>
+                    <input class="form-control" type="text" id="email" name="questioner-email"
+                           value="{{ questioner_email_address }}">
+                    <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
+                    {% if language == "en" %}
+                    <input type="hidden" name="language" value="English"/>
+                    {% elif language == "de" %}
+                    <input type="hidden" name="language" value="German"/>
+                    {% endif %}
+                </form>
+            </div>
         </div>
-        {% if not init %}
-        <div id="ask-question" style="margin-top:30px">
-            {% include 'qanda-ask-question.html' %}
-        </div>
-        {% endif %}
     </div>
+    {% endif %}
     {% if not init %}
-    <div>
-        <div id="question-and-answer" style="margin-top:30px">
-            {% include 'qanda-question-and-answer.html' %}
+        <div class="card">
+            <div class="card-header bg-secondary" id="heading-question-answer">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapse-question-answer"
+                            aria-expanded="true" aria-controls="collapse-question-answer">
+                        {% trans "Your Questions" %}
+                    </button>
+                </h5>
+            </div>
+            <div id="collapse-question-answer" class="collapse show" aria-labelledby="heading-question-answer" data-parent="#qa-accordion">
+                <div class="card-body">
+                    <div>
+                        <div id="question-and-answer" style="margin-top:30px">
+                            {% include 'qanda-question-and-answer.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     {% endif %}
 </div>
 

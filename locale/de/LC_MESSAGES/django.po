@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-05 02:30+0200\n"
+"POT-Creation-Date: 2020-05-05 18:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,11 +25,11 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
-#: .\cv_website_app\views.py:11
+#: .\cv_website_app\views.py:12
 msgid "'<h1>Page not found</h1>'"
 msgstr "'<h1>Seite nicht gefunden</h1>'"
 
-#: .\templates\home.html:36 .\templates\navigation-bar-top.html:38
+#: .\templates\home.html:36 .\templates\navigation-bar-top.html:42
 msgid "Summary"
 msgstr "Zusammenfassung"
 
@@ -37,19 +37,23 @@ msgstr "Zusammenfassung"
 msgid "Hi, my name is"
 msgstr "Hallo, mein Name ist"
 
-#: .\templates\home.html:45 .\templates\navigation-bar-top.html:41
+#: .\templates\home.html:45 .\templates\navigation-bar-top.html:45
 msgid "Work Experience"
 msgstr "Arbeitserfahrung"
 
-#: .\templates\home.html:59 .\templates\navigation-bar-top.html:44
+#: .\templates\home.html:59 .\templates\navigation-bar-top.html:48
 msgid "Education"
 msgstr "Bildung"
 
-#: .\templates\home.html:73 .\templates\navigation-bar-top.html:47
+#: .\templates\home.html:73 .\templates\navigation-bar-top.html:51
 msgid "Skill"
 msgstr "Fähigkeit"
 
-#: .\templates\navigation-bar-top.html:53
+#: .\templates\navigation-bar-top.html:56
+msgid "Ask Question"
+msgstr "Frage Stellen"
+
+#: .\templates\navigation-bar-top.html:63
 msgid "Language"
 msgstr "Sprache"
 
@@ -57,17 +61,24 @@ msgstr "Sprache"
 msgid "Please enter your question:"
 msgstr "Geben Sie bitte Ihre Frage ein:"
 
-#: .\templates\qanda-main.html:97
+#: .\templates\qanda-main.html:90
 msgid "Please enter your email address:"
 msgstr "Geben Sie bitte Ihre Email-Adresse ein:"
 
-#: .\templates\qanda-question-and-answer.html:47
-msgid "Answer:"
-msgstr "Antwort:"
+#: .\templates\qanda-main.html:110
+msgid "Your Questions"
+msgstr "Ihre Fragen"
 
+#: .\templates\qanda-question-and-answer.html:104
+msgid "answer(s)"
+msgstr "Antwort(en):"
 
-#~ msgid "Question and Answer"
-#~ msgstr "Frage und Antwort"
+#: .\templates\qanda-question-and-answer.html:118
+msgid "Posted on"
+msgstr "Veröffentlicht am"
+
+#~ msgid "Enter your email address"
+#~ msgstr "Geben Sie bitte Ihre Email-Adresse ein:"
 
 #~ msgid "Job title:"
 #~ msgstr "Berufsbezeichnung"

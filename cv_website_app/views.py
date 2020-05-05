@@ -6,6 +6,7 @@ from cv_website_app.helper.read_yaml import read_yaml_from_file
 from cv_website_app.static.language_code import LANGUAGES
 from django.utils import translation
 from .models import Question, Answer
+from operator import itemgetter
 
 STATIC_ROOT = STATICFILES_DIRS[0]
 PAGE_NOT_FOUND = translation.ugettext("'<h1>Page not found</h1>'")
@@ -20,7 +21,6 @@ def home_redirect(request):
 
 def home(request):
     global DEFAULT_LANGUAGE
-    file_name = "cv-en.yaml"
     template_file = "home.html"
     context = {"language": DEFAULT_LANGUAGE}
 
@@ -48,7 +48,6 @@ def home(request):
 
 def contact(request):
     global DEFAULT_LANGUAGE
-    file_name = "cv-en.yaml"
     template_file = "qanda-main.html"
     context = {"language": DEFAULT_LANGUAGE}
     init = True
@@ -69,13 +68,17 @@ def contact(request):
         question_list = Question.objects.filter(questioner_email=questioner_email_address).order_by('-question_date')
         question_answer_list = []
 
-        for index, question in enumerate(question_list):
+        for question in question_list:
             try:
-                answer = Answer.objects.get(related_question=question.id).answer
-                question_answer_pair = {"id": index, "question": question.content, "answer": answer}
+                answers = Answer.objects.filter(related_question=question.id)
+                question_answer_pair = {"id": question.id,
+                                        "question": question.content,
+                                        "questionDate": question.question_date,
+                                        "numberOfAnswers": len(answers),
+                                        "answers": answers}
             except Exception as e:
                 print("Exception while querying answers: ", e)
-                question_answer_pair = {"id": index, "question": question.content, "answer": ""}
+                question_answer_pair = {"id": question.id, "question": question.content, "answer": ""}
 
             question_answer_list.append(question_answer_pair)
         if questioner_email_address:
@@ -83,8 +86,10 @@ def contact(request):
         else:
             questioner_email_address = ""
 
+        question_answer_list = sorted(question_answer_list, key=itemgetter('id'))
         context.update({"questioner_email_address": questioner_email_address, "init": init,
-                        "question_answer_list": question_answer_list})
+                        "question_answer_list": question_answer_list,
+                        "numberOfQuestions": len(question_answer_list)})
 
     elif request.method == 'POST':
         new_question_questioner_email = request.POST['questioner-email']
