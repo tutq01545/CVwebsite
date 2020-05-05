@@ -3,6 +3,7 @@
 <style>
     .break-word {
         overflow-wrap: break-word;
+        max-width: 45em;
     }
     .question-and-answer-answer {
         margin-top: 4vh;
@@ -18,13 +19,52 @@
         background-color: #fff;
         border: 1px solid #dee2e6;
     }
+
+    li.active {
+        border-color: #009999;
+        border-width: 1px 1px 1px 5px;
+    }
+
+    .pagination > li > a:focus,
+    .pagination > li > a:hover,
+    .pagination > li > span:focus,
+    .pagination > li > span:hover
+    {
+        color: #009999;
+        background-color: #eee;
+        border-color: #ddd;
+    }
+
+    .pagination > li > span,
+    .pagination > li > a {
+        color: #009999;
+    }
+
+    .popover {
+        left: 15%;
+        position: fixed;
+    }
+
 </style>
 <script>
+    function triggerPopover(questionId){
+        var popoverId = "answer-popover-" + questionId;
+        $('#question-' + questionId).popover({
+           html : true,
+           title:function(){
+              return $('#' + popoverId + ' .popover_title').html();
+           },
+           content:function(){
+              return $('#' + popoverId + ' .popover_content_wrapper').html();
+           }
+
+        });
+    }
 
     $( document ).ready(function() {
-        var items = $("p");
+        var items = $("#question-and-answer p");
         var numItems = items.length;
-        var perPage = 5;
+        var perPage = 7;
         items.slice(perPage).hide();
         if(numItems != 0){
             $(".pagination").pagination({
@@ -38,25 +78,54 @@
                 }
             });
         }
+
+        var numberOfQuestions = "{{numberOfQuestions}}";
+        for (var i = 1; i <= numberOfQuestions + 1;i++) {
+            triggerPopover(i);
+        }
+
+        $('.question-button').on('click', function (e) {
+            $('.question-button').not(this).popover('hide');
+        });
+
     });
+
 
 </script>
 
-{% if question_answer_list %}
+{% if numberOfQuestions > 0 %}
 
-<h2 class="display-5 text-black">{% trans "Answer:" %}</h2>
-{% for value_pair in question_answer_list %}
-<div id="question-and-answer">
-    <p class="break-word">
-        <span class="text-break font-weight-dark text-dark mb-0"><b>{{ value_pair.question }}</b></span><br>
-        <span class="text-break font-weight-light text-dark font-italic mb-2">{{ value_pair.answer }}</span>
-    </p>
-
-    {% endfor %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-        </ul>
-    </nav>
+{% for value_pair in question_answer_list%}
+<p class="break-word">
+    <button data-placement="right" class="btn btn-link text-green question-button" id="question-{{value_pair.id}}"
+            style="text-align:left" type="button">
+        {{value_pair.id}}. {{ value_pair.question }}
+        <span class="text-break font-weight-light text-dark font-italic mb-2">
+            {{value_pair.questionDate}}, <b>{{value_pair.numberOfAnswers}} {% trans "answer(s)" %}</b>
+        </span>
+    </button>
+</p>
+{% endfor %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+    </ul>
+</nav>
+{% for value_pair in question_answer_list%}
+<div id="answer-popover-{{value_pair.id}}">
+    <div class="popover_title" style="display: none">
+        <h5 class="display-7 text-black mb-2">{{ value_pair.question }}</h5>
+        <span class="text-break font-weight-light text-dark font-italic mb-2">
+            {% trans "Posted on" %} {{value_pair.questionDate}}
+        </span>
+    </div>
+    <div class="popover_content_wrapper" style="display: none">
+        {% for answer in value_pair.answers %}
+            <span class="answer_details">
+                {{answer}}
+            </span>
+        {% endfor %}
+    </div>
 </div>
+{% endfor %}
 
 {% endif %}

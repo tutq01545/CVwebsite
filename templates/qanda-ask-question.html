@@ -1,15 +1,9 @@
 {% load i18n %}
-<style>
-    .ask-question {
-        margin-top: 30px;
-    }
 
-    #input-question {
-        margin-top: 40px;
-     }
+<style>
 
     #question {
-        width: 34vw;
+        width: 25vw;
         resize: none;
         margin-top: 1em;
         margin-bottom: 1em;
@@ -17,8 +11,7 @@
 
 </style>
 
-<div class="ask-question">
-    <h2 class="display-5 text-black">{% trans "Question" %}</h2>
+{% block body %}
     <div id="input-question">
         <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please enter your question:" %}</span>
         <form method="post" enctype="multipart/form-data" autocomplete="off">
@@ -28,4 +21,4 @@
             <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
         </form>
     </div>
-</div>
+{% endblock %}

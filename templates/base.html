@@ -15,13 +15,31 @@
 
     <style>
         .body-content {
-            margin-left: calc(21em);
+            margin-left: calc(19em);
             position:absolute;
         }
         html {
             font-size: calc(0.55em + 0.4vw);
          }
 
+        .submit-myCV-style {
+            color: #009999;
+            border-color: #009999;
+        }
+
+        .submit-myCV-style:hover {
+            color: white;
+            background-color: #009999;
+        }
+
+        .submit-myCV-style:click {
+            color: white;
+            background-color: #009999;
+        }
+
+        .text-green {
+            color: #009999;
+        }
     </style>
 
 
@@ -31,7 +49,7 @@
 <div>
     {% include "navigation-bar-top.html" %}
 </div>
-<div id="body">
+<div id="body" class="container-fluid">
     <div class="row body-content">
         {% include "navigation-bar-left.html" %}
         <div class="col-9 page-content p-5" id="content">

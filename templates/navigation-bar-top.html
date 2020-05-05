@@ -22,6 +22,10 @@
     background-color: #343a40;
   }
 
+  #navbarText {
+    margin-left: 2vw;
+  }
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark">
@@ -46,39 +50,62 @@
       <li class="nav-item">
         <a class="nav-link text-white" href="#part-skill-title">{% trans "Skill" %}</a>
       </li>
+      {% elif '/contact' in request.path %}
+      {% if not init %}
+      <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#ask-question-modal">
+        {% trans "Ask Question" %}
+      </button>
+      {% endif %}
       {% endif %}
     </ul>
     <div class="nav-item dropdown ml-auto">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">{% trans "Language" %}</a>
-        <div id="change-language" class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="navbarDropdownMenuLink">
-          <form action="#" method="get">
-            {% if language == "en" %}
-              <a class="dropdown-item active-language">
-                <input class="dropdown-language-item" type="submit" name="language-display" value="English"/>
-                <input type="hidden" name="language" value="English"/>
-              </a>
-            {% else %}
-              <a class="dropdown-item" >
-                <input class="dropdown-language-item" type="submit" name="language-display" value="Englisch"/>
-                <input type="hidden" name="language" value="English"/>
-              </a>
-            {% endif %}
-          </form>
-          <form action="#" method="get">
-            {% if language == "de" %}
-              <a class="dropdown-item active-language">
-                <input class="dropdown-language-item" type="submit" name="language-display" value="Deutsch"/>
-                <input type="hidden" name="language" value="German"/>
-              </a>
-            {% else %}
-              <a class="dropdown-item">
-                <input class="dropdown-language-item" type="submit" name="language-display" value="German"/>
-                <input type="hidden" name="language" value="German"/>
-              </a>
-            {% endif %}
-          </form>
-        </div>
+      <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">{% trans "Language" %}</a>
+      <div id="change-language" class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="navbarDropdownMenuLink">
+        <form action="#" method="get">
+          {% if language == "en" %}
+          <a class="dropdown-item active-language">
+            <input class="dropdown-language-item" type="submit" name="language-display" value="English"/>
+            <input type="hidden" name="language" value="English"/>
+          </a>
+          {% else %}
+          <a class="dropdown-item" >
+            <input class="dropdown-language-item" type="submit" name="language-display" value="Englisch"/>
+            <input type="hidden" name="language" value="English"/>
+          </a>
+          {% endif %}
+        </form>
+        <form action="#" method="get">
+          {% if language == "de" %}
+          <a class="dropdown-item active-language">
+            <input class="dropdown-language-item" type="submit" name="language-display" value="Deutsch"/>
+            <input type="hidden" name="language" value="German"/>
+          </a>
+          {% else %}
+          <a class="dropdown-item">
+            <input class="dropdown-language-item" type="submit" name="language-display" value="German"/>
+            <input type="hidden" name="language" value="German"/>
+          </a>
+          {% endif %}
+        </form>
+      </div>
     </div>
   </div>
 </nav>
+
+<div class="modal fade" id="ask-question-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="ask-question">
+          {% include 'qanda-ask-question.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

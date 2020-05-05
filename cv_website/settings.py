@@ -145,4 +145,5 @@ STATICFILES_DIRS = [
 ]
 
 # This should already be in your settings.py
-#django_heroku.settings(locals())
+if not os.path.isfile(dotenv_file):
+    django_heroku.settings(locals())
