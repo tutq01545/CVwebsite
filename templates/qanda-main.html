@@ -91,39 +91,33 @@
             submitEmailOnClick();            
         });
     </script>
-<div style="margin-top: 40px;">
-    <nav aria-label="breadcrumb" style="width:33em">
-        <ol class="breadcrumb" style="background:None; padding:0">
-            <li class="breadcrumb-item"><a href="#">{% trans "Enter email address"%}</a></li>
-            <li class="breadcrumb-item"><a href="#">{% trans "Add new question" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "See existing question(s)"%}</li>
-        </ol>
-    </nav>
-</div>
-<div style="margin-top: 40px;">
-    <h2 class="display-5 text-black">{% trans "Question and Answer" %}</h2>
-    <div id="input-email-address">
-        <form method="get" enctype="multipart/form-data" autocomplete="off">
-            <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please enter your email address:" %}</span>
-            <input class="form-control" type="text" id="email" name="questioner-email" value="{{ questioner_email_address }}">
-            <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
-        </form>
+<div class="row" style="margin-top: 10px;">
+    <div>
+        <div id="input-email-address">
+            <form method="get" enctype="multipart/form-data" autocomplete="off">
+                <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please enter your email address:" %}</span>
+                <input class="form-control" type="text" id="email" name="questioner-email" value="{{ questioner_email_address }}">
+                <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
+                {% if language == "en" %}
+                <input type="hidden" name="language" value="English"/>
+                {% elif language == "de" %}
+                <input type="hidden" name="language" value="German"/>
+                {% endif %}
+            </form>
 
-    </div>
-    <br>
-
-    {% if not init %}
-    <div class="row">
-        <div id="ask-question" class="col-sm">
+        </div>
+        {% if not init %}
+        <div id="ask-question" style="margin-top:30px">
             {% include 'qanda-ask-question.html' %}
         </div>
-        <br>
-
-        <div id="question-and-answer" class="col-sm">
+        {% endif %}
+    </div>
+    {% if not init %}
+    <div>
+        <div id="question-and-answer" style="margin-top:30px">
             {% include 'qanda-question-and-answer.html' %}
         </div>
     </div>
-
     {% endif %}
 </div>
 

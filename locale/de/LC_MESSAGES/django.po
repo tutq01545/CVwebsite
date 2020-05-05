@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-02 18:18+0200\n"
+"POT-Creation-Date: 2020-05-05 02:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\cv_website\settings.py:109
+#: .\cv_website\settings.py:117
 msgid "English"
 msgstr "Englisch"
 
-#: .\cv_website\settings.py:110
+#: .\cv_website\settings.py:118
 msgid "German"
 msgstr "Deutsch"
 
@@ -53,29 +53,21 @@ msgstr "Fähigkeit"
 msgid "Language"
 msgstr "Sprache"
 
-#: .\templates\qanda-ask-question.html:21
-#, fuzzy
-#| msgid "Description:"
-msgid "Question"
-msgstr "Frage"
-
-#: .\templates\qanda-ask-question.html:23
-#, fuzzy
-#| msgid "Please enter your email address:"
+#: .\templates\qanda-ask-question.html:16
 msgid "Please enter your question:"
 msgstr "Geben Sie bitte Ihre Frage ein:"
 
-#: .\templates\qanda-main.html:96
-msgid "Question and Answer"
-msgstr "Frage und Antwort"
-
-#: .\templates\qanda-main.html:99
+#: .\templates\qanda-main.html:97
 msgid "Please enter your email address:"
 msgstr "Geben Sie bitte Ihre Email-Adresse ein:"
 
 #: .\templates\qanda-question-and-answer.html:47
 msgid "Answer:"
 msgstr "Antwort:"
+
+
+#~ msgid "Question and Answer"
+#~ msgstr "Frage und Antwort"
 
 #~ msgid "Job title:"
 #~ msgstr "Berufsbezeichnung"

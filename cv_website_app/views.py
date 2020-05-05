@@ -19,6 +19,7 @@ def home_redirect(request):
 
 
 def home(request):
+    global DEFAULT_LANGUAGE
     file_name = "cv-en.yaml"
     template_file = "home.html"
     context = {"language": DEFAULT_LANGUAGE}
@@ -27,9 +28,10 @@ def home(request):
         language = request.GET.get("language")
         if language:
             language_iso_code = [code for code in LANGUAGES if code[1] == language][0][0]
-            file_name = "cv-{}.yaml".format(language_iso_code)
-            context.update({"language": language_iso_code})
-            translation.activate(language_iso_code)
+            DEFAULT_LANGUAGE = language_iso_code
+        file_name = "cv-{}.yaml".format(DEFAULT_LANGUAGE)
+        context.update({"language": DEFAULT_LANGUAGE})
+        translation.activate(DEFAULT_LANGUAGE)
         file_with_path = os.path.join(os.path.join(STATIC_ROOT, YAML_FOLDER), file_name)
         data = read_yaml_from_file(file_with_path)
         if data:
@@ -45,6 +47,7 @@ def home(request):
 
 
 def contact(request):
+    global DEFAULT_LANGUAGE
     file_name = "cv-en.yaml"
     template_file = "qanda-main.html"
     context = {"language": DEFAULT_LANGUAGE}
@@ -54,9 +57,10 @@ def contact(request):
         language = request.GET.get("language")
         if language:
             language_iso_code = [code for code in LANGUAGES if code[1] == language][0][0]
-            file_name = "cv-{}.yaml".format(language_iso_code)
-            context.update({"language": language_iso_code})
-            translation.activate(language_iso_code)
+            DEFAULT_LANGUAGE = language_iso_code
+        file_name = "cv-{}.yaml".format(DEFAULT_LANGUAGE)
+        context.update({"language": DEFAULT_LANGUAGE})
+        translation.activate(DEFAULT_LANGUAGE)
         file_with_path = os.path.join(os.path.join(STATIC_ROOT, YAML_FOLDER), file_name)
         data = read_yaml_from_file(file_with_path)
         if data:
@@ -65,17 +69,15 @@ def contact(request):
         question_list = Question.objects.filter(questioner_email=questioner_email_address).order_by('-question_date')
         question_answer_list = []
 
-        for question in question_list:
+        for index, question in enumerate(question_list):
             try:
                 answer = Answer.objects.get(related_question=question.id).answer
-                print(answer)
-                question_answer_pair = {"question": question.content, "answer": answer}
+                question_answer_pair = {"id": index, "question": question.content, "answer": answer}
             except Exception as e:
-                print("Exception: ", e)
-                question_answer_pair = {"question": question.content, "answer": ""}
+                print("Exception while querying answers: ", e)
+                question_answer_pair = {"id": index, "question": question.content, "answer": ""}
 
             question_answer_list.append(question_answer_pair)
-        print(question_answer_list)
         if questioner_email_address:
             init = False
         else:
