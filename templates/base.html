@@ -42,6 +42,29 @@
         }
     </style>
 
+    <script>
+        function checkLoginState(){
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has("loginState")) {
+                var loginState = urlParams.get("loginState");
+                if (loginState == 0) {
+                    alert("Login was failed. Please enter the valid credential.");
+                }
+                else if (loginState == 1){
+                    alert("Login was successful. Welcome to the admin page.");
+                }
+            }
+        }
+        $( document ).ready(function() {
+            //Check login state. Our idea is admin can login whenever he wants. No login view is defined in Backend
+            checkLoginState();
+
+            //Change the "x" button in modal
+            $('button.close > span').empty();
+            $('button.close > span').append('<i class="far fa-times-circle text-green"></i>')
+         });
+    </script>
+
 
 </head>
 <body>

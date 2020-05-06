@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<style>
+
+    .login-input-field {
+        width: 25vw;
+        margin-top:1em;
+        margin-bottom:1em
+    }
+
+</style>
+
+{% block body %}
+    <div>
+        <span class="text-break font-weight-dark text-dark mb-0">{% trans "Please login" %}</span>
+        <form method="post" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <input class="form-control login-input-field" name="username" placeholder="Your username"
+                   maxlength="56">
+            <input class="form-control login-input-field" type="password" placeholder="Your password" name="password"
+                   maxlength="56">
+            <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

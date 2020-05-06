@@ -7,6 +7,9 @@ from cv_website_app.static.language_code import LANGUAGES
 from django.utils import translation
 from .models import Question, Answer
 from operator import itemgetter
+from django.contrib.auth import authenticate, login
+from cv_website_app.helper.update_url import add_parameter_to_url
+
 
 STATIC_ROOT = STATICFILES_DIRS[0]
 PAGE_NOT_FOUND = translation.ugettext("'<h1>Page not found</h1>'")
@@ -44,6 +47,25 @@ def home(request):
             return render(request, template_name=template_file, context=context)
         else:
             return HttpResponseNotFound(PAGE_NOT_FOUND)
+    elif request.method == 'POST':
+        has_username = request.POST.get('username', False)
+        if not has_username:
+            current_url = request.get_full_path()
+            return HttpResponseRedirect(current_url)
+        else:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                params = {"loginState": 1}
+            else:
+                params = {"loginState": 0}
+
+            current_url = request.get_full_path()
+            new_url = add_parameter_to_url(url=current_url, params=params)
+            return HttpResponseRedirect(new_url)
 
 
 def contact(request):
@@ -92,12 +114,34 @@ def contact(request):
                         "numberOfQuestions": len(question_answer_list)})
 
     elif request.method == 'POST':
-        new_question_questioner_email = request.POST['questioner-email']
-        new_question_content = request.POST['new-question']
-        new_question = Question(content=new_question_content, questioner_email=new_question_questioner_email)
-        new_question.save()
-        # Redirect to current page after submit
-        current_url = request.get_full_path()
-        return HttpResponseRedirect(current_url)
+        has_username = request.POST.get('username', False)
+        has_questioner_email = request.POST.get('questioner-email', False)
+        has_new_question = request.POST.get('new-question', False)
+        if has_new_question and has_questioner_email:
+            new_question_questioner_email = request.POST['questioner-email']
+            new_question_content = request.POST['new-question']
+            new_question = Question(content=new_question_content, questioner_email=new_question_questioner_email)
+            new_question.save()
+            # Redirect to current page after submit
+            current_url = request.get_full_path()
+            return HttpResponseRedirect(current_url)
+        else:
+            if not has_username:
+                current_url = request.get_full_path()
+                return HttpResponseRedirect(current_url)
+            else:
+                username = request.POST['username']
+                password = request.POST['password']
+                user = authenticate(username=username, password=password)
+
+                if user is not None:
+                    login(request, user)
+                    params = {"loginState": 1}
+                else:
+                    params = {"loginState": 0}
+
+                current_url = request.get_full_path()
+                new_url = add_parameter_to_url(url=current_url, params=params)
+                return HttpResponseRedirect(new_url)
 
     return render(request, template_name=template_file, context=context)
