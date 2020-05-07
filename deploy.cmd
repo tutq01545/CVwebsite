@@ -2,7 +2,6 @@
 set /p Input=Enter your Heroku app name for deployment:
 call heroku create %Input% --buildpack=heroku/python
 if errorlevel 1 deploy 
-call git checkout master
 call heroku git:remote -a %Input%
 
 :commit
