@@ -1,12 +1,29 @@
-call heroku login -i
-if errorlevel 1 exit /B
-call heroku create cv-web-app-tu --buildpack=heroku/python
-if errorlevel 1 exit /B
-call heroku git:remote -a cv-web-app-tu
-if errorlevel 1 exit /B
-call git add .
-if errorlevel 1 exit /B
-call git commit -m "[MESSAGE]"
-if errorlevel 1 exit /B
+@echo off
+set /p Input=Enter your Heroku app name for deployment:
+call heroku create %Input% --buildpack=heroku/python
+if errorlevel 1 deploy 
+call git checkout master
+call heroku git:remote -a %Input%
+
+:commit
+set /p Input=Do you need to commit changes to Git(y/n)?
+if /I "%Input%"=="y" goto y 
+if /I "%Input%"=="n" goto n
+echo Invalid input
+goto commit
+
+:y 
+call git add . 
+set /p Input=Enter your commit message:
+call git commit -m "%Input%"
+
+:n
 call git push heroku master
-if errorlevel 1 exit /B
+if errorlevel 1 (
+	pause
+	goto n
+) else (
+	echo Deployment successful!
+	pause
+)
+
