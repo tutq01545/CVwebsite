@@ -80,6 +80,7 @@
             submitEmailOnClick();            
         });
     </script>
+{% if not user.is_authenticated %}
 <div id="qa-accordion" style="margin-top:50px">
     {% if init %}
     <div class="card">
@@ -89,7 +90,7 @@
                     <span class="text-break font-weight-dark text-dark mb-0">
                         {% trans "Please enter your email address:" %}</span>
                     <input class="form-control" type="text" id="email" name="questioner-email"
-                           value="{{ questioner_email_address }}">
+                           value="{{ questioner_email_address }}" required>
                     <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
                     {% if language == "en" %}
                     <input type="hidden" name="language" value="English"/>
@@ -123,5 +124,7 @@
         </div>
     {% endif %}
 </div>
-
+{% else %}
+    {% include 'qanda-admin.html' %}
+{% endif %}
 {% endblock %}

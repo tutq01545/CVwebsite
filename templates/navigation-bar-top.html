@@ -1,6 +1,13 @@
 {% load i18n %}
 
 <style>
+  #navbarDropdownMenuLink {
+    padding-left:0;
+  }
+
+  #login-logout-button {
+    margin-right: 25px;
+  }
 
   .active-language {
       background-color: #009999;
@@ -26,13 +33,19 @@
     margin-left: 2vw;
   }
 
+  .dropdown-menu {
+    min-width:inherit;
+  }
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark">
   <a id="brand-top" class="navbar-brand text-white" href={% url 'home' %}>My Website</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
           aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon">
+      <i class="fa fa-navicon" style="color:#fff; font-size:20px;"></i>
+    </span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarText">
@@ -51,17 +64,38 @@
         <a class="nav-link text-white" href="#part-skill-title">{% trans "Skill" %}</a>
       </li>
       {% elif '/contact' in request.path %}
-      {% if not init %}
-      <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#ask-question-modal">
-        {% trans "Ask Question" %}
-      </button>
-      {% endif %}
+        {% if not user.is_authenticated %}
+          {% if not init %}
+          <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#ask-question-modal">
+            {% trans "Ask Question" %}
+          </button>
+          {% endif %}
+        {% endif %}
       {% endif %}
     </ul>
-    <div class="nav-item dropdown ml-auto">
+    {% if user.is_authenticated %}
+      <div class="nav-item ml-auto" style="margin-right: 20px">
+        <span class="text-white font-italic">{% trans "Welcome" %}, Mr.Admin </span>
+      </div>
+    {% endif %}
+    <div class="nav-item" id="login-logout-button">
+      {% if not user.is_authenticated %}
+      <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#login-modal">
+        Admin-Login
+      </button>
+      {% else %}
+      <form method="post" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        <a href="{% url 'logout' %}" class="btn submit-myCV-style">
+          Logout
+        </a>
+      </form>
+      {% endif %}
+    </div>
+    <div class="nav-item dropdown ">
       <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
          aria-haspopup="true" aria-expanded="false">{% trans "Language" %}</a>
-      <div id="change-language" class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="navbarDropdownMenuLink">
+      <div id="change-language" class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdownMenuLink">
         <form action="#" method="get">
           {% if language == "en" %}
           <a class="dropdown-item active-language">
@@ -104,6 +138,23 @@
       <div class="modal-body">
         <div id="ask-question">
           {% include 'qanda-ask-question.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="login">
+          {% include 'login.html' %}
         </div>
       </div>
     </div>
