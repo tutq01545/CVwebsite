@@ -5,7 +5,7 @@
     padding-left:0;
   }
 
-  #login-button {
+  #login-logout-button {
     margin-right: 25px;
   }
 
@@ -64,17 +64,33 @@
         <a class="nav-link text-white" href="#part-skill-title">{% trans "Skill" %}</a>
       </li>
       {% elif '/contact' in request.path %}
-      {% if not init %}
-      <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#ask-question-modal">
-        {% trans "Ask Question" %}
-      </button>
-      {% endif %}
+        {% if not user.is_authenticated %}
+          {% if not init %}
+          <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#ask-question-modal">
+            {% trans "Ask Question" %}
+          </button>
+          {% endif %}
+        {% endif %}
       {% endif %}
     </ul>
-    <div class="nav-item ml-auto" id="login-button">
+    {% if user.is_authenticated %}
+      <div class="nav-item ml-auto" style="margin-right: 20px">
+        <span class="text-white font-italic">{% trans "Welcome" %}, Mr.Admin </span>
+      </div>
+    {% endif %}
+    <div class="nav-item" id="login-logout-button">
+      {% if not user.is_authenticated %}
       <button type="button" class="btn submit-myCV-style" data-toggle="modal" data-target="#login-modal">
         Admin-Login
       </button>
+      {% else %}
+      <form method="post" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        <a href="{% url 'logout' %}" class="btn submit-myCV-style">
+          Logout
+        </a>
+      </form>
+      {% endif %}
     </div>
     <div class="nav-item dropdown ">
       <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"

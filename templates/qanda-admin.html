@@ -1,0 +1,31 @@
+{% load i18n %}
+
+<style>
+    .admin-request-buttons {
+        width: 25em;
+    }
+</style>
+
+
+<div style="margin-top:50px">
+    <div class="container">
+        <div class="row admin-request-buttons">
+            <div class="col">
+                <form method="get" enctype="multipart/form-data" autocomplete="off">
+                    <input type="hidden" name="get_all_questions" value= "get_all_questions">
+                    <button type="submit" class="btn submit-myCV-style">
+                        {% trans "Get all questions" %}
+                    </button>
+                </form>
+            </div>
+            <div class="col">
+                <form method="get" enctype="multipart/form-data" autocomplete="off">
+                    <input type="hidden" name="get_statistics" value= "get_statistics">
+                    <button type="submit" class="btn submit-myCV-style">
+                        {% trans "Get statistics" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,14 @@
 import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from cv_website.settings import STATICFILES_DIRS
 from cv_website_app.helper.read_yaml import read_yaml_from_file
 from cv_website_app.static.language_code import LANGUAGES
 from django.utils import translation
 from .models import Question, Answer
 from operator import itemgetter
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from cv_website_app.helper.update_url import add_parameter_to_url
 
 
@@ -86,32 +87,35 @@ def contact(request):
         data = read_yaml_from_file(file_with_path)
         if data:
             context.update({'developer': data['developer']})
+
         questioner_email_address = request.GET.get('questioner-email')
-        question_list = Question.objects.filter(questioner_email=questioner_email_address).order_by('-question_date')
-        question_answer_list = []
-
-        for question in question_list:
-            try:
-                answers = Answer.objects.filter(related_question=question.id)
-                question_answer_pair = {"id": question.id,
-                                        "question": question.content,
-                                        "questionDate": question.question_date,
-                                        "numberOfAnswers": len(answers),
-                                        "answers": answers}
-            except Exception as e:
-                print("Exception while querying answers: ", e)
-                question_answer_pair = {"id": question.id, "question": question.content, "answer": ""}
-
-            question_answer_list.append(question_answer_pair)
+        is_get_all_question = request.GET.get("get_all_questions")
+        is_get_statistics = request.GET.get("get_statistics")
         if questioner_email_address:
+            from cv_website_app.helper.view_helper import get_question_answer_list
             init = False
-        else:
-            questioner_email_address = ""
+            question_answer_list = get_question_answer_list(email_address=questioner_email_address)
 
-        question_answer_list = sorted(question_answer_list, key=itemgetter('id'))
-        context.update({"questioner_email_address": questioner_email_address, "init": init,
-                        "question_answer_list": question_answer_list,
-                        "numberOfQuestions": len(question_answer_list)})
+            context.update({"questioner_email_address": questioner_email_address, "init": init,
+                            "question_answer_list": question_answer_list,
+                            "numberOfQuestions": len(question_answer_list),
+                            "message": ""})
+        elif is_get_all_question:
+            from cv_website_app.helper.view_helper import get_all_questions_list
+
+            all_questions_list = get_all_questions_list()
+
+            context.update({"allQuestions": all_questions_list,
+                            "numberOfQuestions": len(all_questions_list),
+                            })
+            #TODO
+
+        elif is_get_statistics:
+            from cv_website_app.helper.view_helper import get_statistics
+
+            statistics = get_statistics() ##TODO
+        else:
+            context.update({"init": init})
 
     elif request.method == 'POST':
         has_username = request.POST.get('username', False)
@@ -145,3 +149,9 @@ def contact(request):
                 return HttpResponseRedirect(new_url)
 
     return render(request, template_name=template_file, context=context)
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('home')

@@ -16,9 +16,9 @@
         <form method="post" enctype="multipart/form-data" autocomplete="off">
             {% csrf_token %}
             <input class="form-control login-input-field" name="username" placeholder="Your username"
-                   maxlength="56">
+                   maxlength="56" required>
             <input class="form-control login-input-field" type="password" placeholder="Your password" name="password"
-                   maxlength="56">
+                   maxlength="56" required>
             <button class="btn btn-outline-success submit-myCV-style" type="submit">Submit</button>
         </form>
     </div>
