@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-09 02:13+0200\n"
+"POT-Creation-Date: 2020-05-09 13:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,11 +81,11 @@ msgstr "Gepostet von"
 msgid "on"
 msgstr "am"
 
-#: .\templates\qanda-admin-question.html:71
+#: .\templates\qanda-admin-question.html:73
 msgid "Answered on"
 msgstr "Geantwortet am"
 
-#: .\templates\qanda-admin-question.html:77
+#: .\templates\qanda-admin-question.html:81
 msgid "Your answer"
 msgstr "Deine Antwort"
 
@@ -113,9 +113,12 @@ msgstr "Ihre Fragen"
 msgid "answer(s)"
 msgstr "Antwort(en):"
 
-#: .\templates\qanda-question-and-answer.html:83
-msgid "Posted on"
-msgstr "Veröffentlicht am"
+#: .\templates\qanda-question-and-answer.html:97
+msgid "No answer is found. Please wait. Thank you!"
+msgstr "Es wird keine Antwort gefunden. Warten Sie mal. Vielen Dank!"
+
+#~ msgid "Posted on"
+#~ msgstr "Veröffentlicht am"
 
 #~ msgid "Enter your email address"
 #~ msgstr "Geben Sie bitte Ihre Email-Adresse ein:"
