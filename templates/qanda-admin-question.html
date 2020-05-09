@@ -1,0 +1,95 @@
+{% load i18n %}
+
+<style>
+    .admin-answer-textarea {
+        margin: 2em 0 2em 0;
+    }
+
+    .question-card {
+        width: 30em;
+        margin-bottom: 10px;
+        border-color: #009999;
+    }
+
+    #question-cards-pagination {
+        margin-top: 30px;
+    }
+
+    .previous-answers {
+        margin: 2em 0 3em 0;
+    }
+
+    .previous-answers-item {
+        margin: 0 0 1em 0;
+    }
+
+</style>
+
+<script>
+
+    $( document ).ready(function() {
+        var items = $("#question-cards div.card");
+        var numItems = items.length;
+        var perPage = 3;
+        items.slice(perPage).hide();
+        if(numItems != 0){
+            $("#question-cards-pagination.pagination").pagination({
+                items: numItems,
+                itemsOnPage: perPage,
+                cssStyle: "light-theme",
+                onPageClick: function(pageNumber) {
+                    var showFrom = perPage * (pageNumber - 1);
+                    var showTo = showFrom + perPage;
+                    items.hide().slice(showFrom, showTo).show();
+                }
+            });
+        }
+    });
+
+
+</script>
+
+<!-- Reuse defined style in qanda-question-and-answer.html -->
+<div id="question-cards">
+    {% for question in allQuestions %}
+    <div class="card question-card">
+        <div class="card-body">
+            <div class="card-title">
+                <button class="btn btn-link text-green question-button" type="button" data-toggle="collapse"
+                        data-target="#question-card-collapse-{{question.id}}" aria-expanded="false"
+                        aria-controls="question-card-collapse-{{question.id}}">
+                    <h5 class="text-left text-green">{{question.id}}. {{ question.question }}</h5>
+                </button>
+                <h6 class="card-sub-title font-weight-light text-dark font-italic">
+                    {% trans "posted by" %} <b>{{question.questioner}}</b> {% trans "on" %} <b>{{question.questionDate}}</b>
+                </h6>
+            </div>
+            <div class="card-text collapse" id="question-card-collapse-{{question.id}}">
+                {% if question.answers %}
+                <div class="previous-answers">
+                    {% for answer in question.answers %}
+                    <div class="previous-answers-item">
+                        <h6>{{answer.answerContent}}</h6>
+                        <h6 class="font-weight-light text-dark font-italic">{% trans "Answered on" %} {{answer.answerDate}}</h6>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div>
+                    <form method="post" enctype="multipart/form-data" autocomplete="off">
+                        {% csrf_token %}
+                        <textarea id="admin-answer-{{question.id}}" placeholder="{% trans 'Your answer' %}" name="admin-answer"
+                                  class="form-control admin-answer-textarea" rows="8" maxlength="255"></textarea>
+                        <input type="hidden" name="question-id" value="{{question.id}}">
+                        <button type="submit" class="btn btn-outline-success submit-myCV-style">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<nav aria-label="Page navigation">
+    <ul id="question-cards-pagination" class="pagination">
+    </ul>
+</nav>

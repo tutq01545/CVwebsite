@@ -29,11 +29,15 @@ def get_all_questions_list():
     questions_list = []
 
     for question in questions_set:
+        relevant_answers = Answer.objects.filter(related_question=question).order_by('answer_date')
         questions_list.append({
             "id": question.id,
             "question": question.content,
             "questionDate": question.question_date,
-            "questioner": question.questioner_email
+            "questioner": question.questioner_email,
+            "answers": [{"answerID": answer.id,
+                         "answerContent": answer.answer, "answerDate": answer.answer_date}
+                        for answer in relevant_answers]
         })
     return questions_list
 

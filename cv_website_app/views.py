@@ -1,4 +1,4 @@
-import os
+import os, datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -105,10 +105,10 @@ def contact(request):
 
             all_questions_list = get_all_questions_list()
 
-            context.update({"allQuestions": all_questions_list,
+            context.update({"target": "getAllQuestions",
+                            "allQuestions": all_questions_list,
                             "numberOfQuestions": len(all_questions_list),
                             })
-            #TODO
 
         elif is_get_statistics:
             from cv_website_app.helper.view_helper import get_statistics
@@ -121,6 +121,9 @@ def contact(request):
         has_username = request.POST.get('username', False)
         has_questioner_email = request.POST.get('questioner-email', False)
         has_new_question = request.POST.get('new-question', False)
+        has_admin_answer = request.POST.get('admin-answer', False)
+
+        # Case: add new question
         if has_new_question and has_questioner_email:
             new_question_questioner_email = request.POST['questioner-email']
             new_question_content = request.POST['new-question']
@@ -129,25 +132,39 @@ def contact(request):
             # Redirect to current page after submit
             current_url = request.get_full_path()
             return HttpResponseRedirect(current_url)
-        else:
-            if not has_username:
-                current_url = request.get_full_path()
-                return HttpResponseRedirect(current_url)
+        # Case: admin logs in
+        elif has_username:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                params = {"loginState": 1}
             else:
-                username = request.POST['username']
-                password = request.POST['password']
-                user = authenticate(username=username, password=password)
+                params = {"loginState": 0}
 
-                if user is not None:
-                    login(request, user)
-                    params = {"loginState": 1}
-                else:
-                    params = {"loginState": 0}
-
-                current_url = request.get_full_path()
-                new_url = add_parameter_to_url(url=current_url, params=params)
-                return HttpResponseRedirect(new_url)
-
+            current_url = request.get_full_path()
+            new_url = add_parameter_to_url(url=current_url, params=params)
+            return HttpResponseRedirect(new_url)
+        # Case: admin provides answer
+        elif has_admin_answer:
+            question_id = request.POST['question-id']
+            answer = request.POST['admin-answer']
+            relevant_question = Question.objects.get(id=question_id)
+            try:
+                Answer.objects.create(related_question=relevant_question, answer=answer)
+                params = {"updateAnswerStatus": 1}
+            except Exception as e:
+                print(e)
+                params = {"updateAnswerStatus": 0}
+            current_url = request.get_full_path()
+            new_url = add_parameter_to_url(url=current_url, params=params)
+            return HttpResponseRedirect(new_url)
+        # Otherwise
+        else:
+            current_url = request.get_full_path()
+            return HttpResponseRedirect(current_url)
     return render(request, template_name=template_file, context=context)
 
 

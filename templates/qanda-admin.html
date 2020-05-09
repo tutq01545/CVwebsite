@@ -4,6 +4,10 @@
     .admin-request-buttons {
         width: 25em;
     }
+
+    .qanda-admin-page-content {
+        margin-top: 3.5vw;
+    }
 </style>
 
 
@@ -27,5 +31,12 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div class="container qanda-admin-page-content">
+        {% if target == "getAllQuestions" %}
+        {% include 'qanda-admin-question.html' %}
+        {% elif target == "getStatistics" %}
+        def
+        {% endif %}
     </div>
 </div>

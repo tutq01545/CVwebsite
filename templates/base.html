@@ -40,10 +40,51 @@
         .text-green {
             color: #009999;
         }
+
+        textarea {
+            resize: None;
+        }
+
+        .pagination > li > a:focus,
+        .pagination > li > a:hover,
+        .pagination > li > span:focus,
+        .pagination > li > span:hover
+        {
+            color: #009999;
+            background-color: #eee;
+            border-color: #ddd;
+        }
+
+        .pagination > li > span,
+        .pagination > li > a {
+            color: #009999;
+        }
+
+        li.active, li.disabled {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        }
+
+        li.active {
+            border-color: #009999;
+            border-width: 1px 1px 1px 5px;
+        }
+
+        .popover {
+            left: 15%;
+            position: fixed;
+        }
+
     </style>
 </head>
 <body>
-    <script>
+<script>
         function checkLoginState(){
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has("loginState")) {
@@ -56,9 +97,23 @@
                 }
             }
         }
+        function checkUpdateAnswerStatus(){
+           var urlParams = new URLSearchParams(window.location.search);
+           if (urlParams.has("updateAnswerStatus")) {
+                var loginState = urlParams.get("updateAnswerStatus");
+                if (loginState == 0) {
+                    alert("Answer can't be saved. Please check the log file.");
+                }
+                else if (loginState == 1){
+                    alert("Answer was saved successfully.");
+                }
+            }
+        }
         $( document ).ready(function() {
             //Check login state. Our idea is admin can login whenever he wants. No login view is defined in Backend
             checkLoginState();
+
+            checkUpdateAnswerStatus();
 
             //Change the "x" button in modal
             $('button.close > span').empty();
