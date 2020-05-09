@@ -2,7 +2,7 @@ import urllib.parse as urlparse
 from urllib.parse import urlencode
 
 
-def add_parameter_to_url(url:str, params: dict):
+def add_parameter_to_url(url: str, params: dict) -> str:
     url_parts = list(urlparse.urlparse(url))
     query = dict(urlparse.parse_qsl(url_parts[4]))
     query.update(params)

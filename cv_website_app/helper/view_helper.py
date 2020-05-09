@@ -2,7 +2,7 @@ from cv_website_app.models import Question, Answer
 from operator import itemgetter
 
 
-def get_question_answer_list(email_address):
+def get_question_answer_list(email_address: str) -> list:
     question_list = Question.objects.filter(questioner_email=email_address).order_by('-question_date')
     question_answer_list = []
 
@@ -24,7 +24,7 @@ def get_question_answer_list(email_address):
     return question_answer_list
 
 
-def get_all_questions_list():
+def get_all_questions_list() -> list:
     questions_set = Question.objects.all().order_by('-question_date')
     questions_list = []
 

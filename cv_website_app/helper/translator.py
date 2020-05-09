@@ -2,7 +2,7 @@ from googletrans import Translator
 
 
 # Function
-def translate(language_code: str, text: str):
+def translate(language_code: str, text: str) -> str:
     translator = Translator()
     try:
         translated_text = translator.translate(dest=language_code, text=text).text

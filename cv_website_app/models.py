@@ -65,7 +65,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    answer = models.CharField(blank=False, max_length=MIN_CHAR_FIELD_LENGTH)
+    answer = models.CharField(blank=False, max_length=1000)
     related_question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_date = models.DateTimeField(auto_now_add=True)
     

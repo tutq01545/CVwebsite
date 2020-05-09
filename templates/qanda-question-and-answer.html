@@ -78,18 +78,25 @@
 {% for value_pair in question_answer_list%}
 <div id="answer-popover-{{value_pair.id}}">
     <div class="popover_title" style="display: none">
-        <h5 class="display-7 text-black mb-2">{{ value_pair.question }}</h5>
-        <span class="text-break font-weight-light text-dark font-italic mb-2">
-            {% trans "Posted on" %} {{value_pair.questionDate}}
-        </span>
     </div>
-    <div class="popover_content_wrapper" style="display: none">
-        {% for answer in value_pair.answers %}
-            <span class="answer_details">
-                {{answer}}
-            </span>
-        {% endfor %}
-    </div>
+    {% if value_pair.numberOfAnswers > 0 %}
+        <div class="popover_content_wrapper" style="display: none">
+            {% for answer in value_pair.answers %}
+                <span class="answer_details">
+                    <li>
+                        {{answer.answer}},
+                        <h6 style="font-weight-light text-dark font-italic mb-2">
+                            answered on {{answer.answer_date}}
+                        </h6>
+                    </li>
+                </span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="popover_content_wrapper" style="display: none">
+            {% trans "No answer is found. Please wait. Thank you!" %}
+        </div>
+    {% endif %}
 </div>
 {% endfor %}
 
