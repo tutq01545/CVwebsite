@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-09 13:36+0200\n"
+"POT-Creation-Date: 2020-05-12 02:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,6 +88,22 @@ msgstr "Geantwortet am"
 #: .\templates\qanda-admin-question.html:81
 msgid "Your answer"
 msgstr "Deine Antwort"
+
+#: .\templates\qanda-admin-statistic.html:5
+msgid "Number of questions:"
+msgstr "Anzahl der Fragen:"
+
+#: .\templates\qanda-admin-statistic.html:8
+msgid "Number of questioners:"
+msgstr "Anzahl der Fragesteller:"
+
+#: .\templates\qanda-admin-statistic.html:11
+msgid "Number of questions without answer:"
+msgstr "Anzahl der Fragen ohne Antwort:"
+
+#: .\templates\qanda-admin-statistic.html:14
+msgid "Number of questions with answer:"
+msgstr "Anzahl der Fragen mit Antwort:"
 
 #: .\templates\qanda-admin.html:21
 msgid "Get all questions"

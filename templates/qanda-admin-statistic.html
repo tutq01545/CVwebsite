@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div style="width: 400px">
+    <h5 class="font-weight-light text-dark mb-0">
+        {% trans "Number of questions:" %} {{numberOfQuestion}}
+    </h5>
+    <h5 class="font-weight-light text-dark mb-0">
+        {% trans "Number of questioners:" %} {{numberOfQuestioner}}
+    </h5>
+    <h5 class="font-weight-light text-dark mb-0">
+        {% trans "Number of questions without answer:" %} {{numberOfQuestionWithoutAnswer}}
+    </h5>
+    <h5 class="font-weight-light text-dark mb-0">
+        {% trans "Number of questions with answer:" %} {{numberOfQuestionWithAnswer}}
+    </h5>
+</div>

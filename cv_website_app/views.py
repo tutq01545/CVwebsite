@@ -113,7 +113,9 @@ def contact(request):
         elif is_get_statistics:
             from cv_website_app.helper.view_helper import get_statistics
 
-            statistics = get_statistics() ##TODO
+            statistics = get_statistics()
+            context.update({"target": "getStatistics"})
+            context.update(statistics)
         else:
             context.update({"init": init})
 
