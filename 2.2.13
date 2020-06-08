@@ -1,0 +1,4 @@
+Requirement already satisfied: django in c:\users\tutran1\documents\project\cv-website\venv\lib\site-packages (2.2.12)
+Requirement already satisfied: pytz in c:\users\tutran1\documents\project\cv-website\venv\lib\site-packages (from django) (2019.3)
+Requirement already satisfied: sqlparse in c:\users\tutran1\documents\project\cv-website\venv\lib\site-packages (from django) (0.3.1)
+Could not fetch URL https://pypi.org/simple/pip/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded with url: /simple/pip/ (Caused by SSLError(SSLError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:719)'),)) - skipping
